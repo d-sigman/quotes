@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <ul class="navbar-nav col-11">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav col-1" style="float:right;">
+                <li class="nav-item">  
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="jumbotron">
+            <h4>Posts by {{user.name}}</h4>
+            <h5>Count:  {{count}}</h5>
+        </div>
+        {% for quote in user.quotes.all %}
+        <div>
+            <table>
+                <tr>
+                    <td><h5 style="color: red; font-size: 1.5rem">{{quote.attribution}}:  <span style="color: black; font-style: italic; font-size: 1.1rem">  {{quote.message}}</span></h5></td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+        

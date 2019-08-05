@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Potent Quotables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <ul class="navbar-nav col-11"></ul>
+            <ul class="navbar-nav col-1" style="float:right;">
+                <li class="nav-item">  
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <br>
+        <p><b>Hello, {{name}}!</b></p>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col">
+                <h3>Potent Quotables</h3>
+            </div>
+            
+            <div class="col-2"></div>
+
+            <div class="col">
+                <h3>Your Favorites</h3>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="col pre-scrollable" style="border: 1px solid black; max-height: 600px">
+                {% for quote in others %}
+                    <div class="row" style="border: 1px solid black; margin: 5px">
+                        <div class="container">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><h4 style="color: red">{{quote.attribution}}:  </h4>{{quote.message}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Posted by </b><a href="/view_user/{{quote.poster.id}}"><span style="text-decoration: underline; font-style: italic">{{quote.poster.name}}</span></a></td>
+                                        <td>
+                                            <a href="/quotes/{{quote.id}}/favorite">Favorite</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-2"></div>
+
+            <div class="col">
+                <div class="col pre-scrollable" style="border: 1px solid black">
+                {% for quote in favorites %}
+                    <div class="row" style="border: 1px solid black; margin: 5px">
+                        <div class="container">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><h4 style="color: red">{{quote.attribution}}:  </h4>{{quote.message}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Posted by </b><a href="/view_user/{{quote.poster.id}}"><span style="text-decoration: underline; font-style: italic">{{quote.poster.name}}</span></a></td>
+                                        <td>
+                                        
+                                            <a href="/quotes/{{quote.id}}/unfavorite">Unfavorite</a>
+                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+
+                <h4 style="margin-top: 15px">Contribute a Quote:</h4>
+
+                <form action="create" class="form-horizontal" method="POST">
+                {% csrf_token %}
+                
+                    <div class="form-group">
+                        <label for="attribution" class="col-sm-2 control-label">Attribution:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="attribution" id="attribution" class="form-control" placeholder="Attribution">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="col-sm-2 control-label">Message:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="message" id="message" class="form-control" placeholder="Message">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Register/Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" style="padding: 1.5em 1.5em">
+            <div class="col">
+                <h2>Welcome!</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 style="color: rgb(0, 0, 102)">Register</h3>
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <label for="name" style="color: gray; margin-bottom: 0px; margin-top: 10px">Name</label>
+                            <span>{{ request.session.errors.name }}</span>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="name">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="alias" style="color: gray; margin-bottom: 0px; margin-top: 10px">Alias</label>
+                            <span>{{ request.session.errors.alias }}</span>
+                            <input type="text" name="alias" id="alias" class="form-control" placeholder="alias">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="email" style="color: gray; margin-bottom: 0px; margin-top: 10px">Email</label>
+                            <span>{{ request.session.errors.email }}</span>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="email">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="password" style="color: gray; margin-bottom: 0px; margin-top: 10px">Password</label>
+                            <span>{{ request.session.errors.password }}</span>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="password">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="password_confirm" style="color: gray; margin-bottom: 0px; margin-top: 10px">Confirm PW</label>
+                            <span>{{ request.session.errors.password_confirm }}</span>
+                            <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="confirm pw">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="dob" style="color: gray; margin-bottom: 0px; margin-top: 10px">Date of Birth</label>
+                            <span>{{ request.session.errors.dob }}</span>
+                            <input type="date" name="dob" id="dob" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <input type="submit" value="Register" class="btn btn-primary" style="margin-top: 15px">
+                </form>
+            </div>
+
+            <div class="col-md-auto">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li style="color: red">{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="col-4">
+                <h3 style="color: rgb(0, 0, 102)">Login</h3>
+                <form action="/login" method="POST">
+                {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="email" style="color: gray; margin-bottom: 0px; margin-top: 10px">Email</label>
+                            
+                            <input type="text" name="email" class="form-control" placeholder="email">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="password" style="color: gray; margin-bottom: 0px; margin-top:10px">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="password">
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Login" class="btn btn-primary" style="margin-top: 15px">
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
